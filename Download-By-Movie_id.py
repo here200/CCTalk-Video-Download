@@ -25,16 +25,16 @@ class Cctalk(object):
         title = jsonpath.jsonpath(movie, '$..videoName')[0] + '.mp4'
         movie_href = jsonpath.jsonpath(movie, '$..videoUrl')[0]
         # 保存视频信息
-        movie_list = {'title': title, 'href': movie_href}
+        movie_list = {"name": title, "url": movie_href}
         # 打印视频信息
         print(movie_list)
         return movie_list
 
     def save_movie(self, movie_list):
         # 发送请求，把视频数据拿到
-        movie_file = requests.get(movie_list['href'], headers=self.headers)
+        movie_file = requests.get(movie_list['url'], headers=self.headers)
         # 保存到文件中
-        with open('./data/' + movie_list['title'], 'wb') as f:
+        with open('./data/' + movie_list['name'], 'wb') as f:
             f.write(movie_file.content)
 
 

@@ -58,18 +58,18 @@ class CCTalk(object):
         # 创建视频信息，并追加到视频列表中
         data = {
             'index': len(movie_list),
-            'title': title,
-            'href': movie_href
+            'name': title,
+            'url': movie_href
         }
         movie_list.append(data)
 
     def download_movie(self, movie_list, index):
         # 获取视频链接
-        href = movie_list[index]['href']
+        href = movie_list[index]['url']
         # 发送请求，获取视频
         response = requests.get(href, headers=self.headers)
         # 保存视频
-        with open('./data/' + movie_list[index]['title'], 'wb') as f:
+        with open('./data/' + movie_list[index]['name'], 'wb') as f:
             f.write(response.content)
 
     def run(self):
