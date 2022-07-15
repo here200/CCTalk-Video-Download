@@ -2,6 +2,7 @@ import requests
 import jsonpath
 import json
 
+
 class CCTalk(object):
 
     def __init__(self, series_id):

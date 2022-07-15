@@ -2,6 +2,7 @@ import requests
 import jsonpath
 import json
 
+
 class Cctalk(object):
     def __init__(self):
         # headers
