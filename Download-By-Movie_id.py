@@ -3,7 +3,7 @@ import jsonpath
 import json
 
 
-class Cctalk(object):
+class CCTalk(object):
     def __init__(self):
         # headers
         self.headers = {
@@ -40,8 +40,8 @@ class Cctalk(object):
 
 
 if __name__ == '__main__':
-    # 创建一个Cctalk对象
-    ccTalk = Cctalk()
+    # 创建一个CCTalk对象
+    ccTalk = CCTalk()
     # 通过视频id来搜索视频
     movie_list = ccTalk.search_by_movie_id('16444799633133')
     # 下载视频

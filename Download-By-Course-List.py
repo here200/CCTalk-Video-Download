@@ -7,19 +7,15 @@ class CCTalk(object):
 
     def __init__(self, series_id):
         self.headers = {
-            "User-Agent": "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)"
+            "User-Agent": "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)",
+            # 有些视频需要购买才能观看，登录CCTalk后，把cookies复制到这里
+            # 解除权限的限制
+            "cookie": ""
         }
         self.series_id = series_id
-        # 有些视频需要购买才能观看，登录CCTalk后，把cookies赋值给self.cookies
-        # 解除权限的限制
-        self.cookies = ''
 
-    def get_data(self, url, params):
+    def get_data(self, url, params=None):
         response = requests.get(url, headers=self.headers, params=params)
-        return response.content
-
-    def get_data_with_cookies(self, url, headers, params):
-        response = requests.get(url, headers=headers, params=params)
         return response.content
 
     # 获取课程中每个视频的id
@@ -45,13 +41,8 @@ class CCTalk(object):
         }
         # url
         url = 'https://www.cctalk.com/webapi/content/v1.1/video/detail'
-        # headers with cookies
-        headers = {
-            "User-Agent": "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)",
-            "cookie": self.cookies
-        }
         # 发送数据
-        tmp = self.get_data_with_cookies(url, headers=headers, params=params).decode()
+        tmp = self.get_data(url, params=params).decode()
         # 解析数据，获取视频标题和链接
         movie = json.loads(tmp)
         title = jsonpath.jsonpath(movie, '$..videoName')[0] + '.mp4'
@@ -68,7 +59,7 @@ class CCTalk(object):
         # 获取视频链接
         href = movie_list[index]['url']
         # 发送请求，获取视频
-        response = requests.get(href, headers=self.headers)
+        response = requests.get(href)
         # 保存视频
         with open('./data/' + movie_list[index]['name'], 'wb') as f:
             f.write(response.content)
