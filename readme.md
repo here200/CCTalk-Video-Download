@@ -48,3 +48,6 @@ CCtalk以其便捷多样的授课方式、强大的教学功能与营销工具�
 ## 5. Add comments
 
 1. 不支持下载版权保护的视频。因为这个项目是基于从浏览器抓包分析后编写的。详细情况了解：[开启版权风险防控，加强视频内容安全-CCtalk](https://www.cctalk.com/faq/100175)
+2. 2022-10-20，我重写了该项目，新项目地址： [here200/CCTallk-Video-Download-Extension (github.com)](https://github.com/here200/CCTallk-Video-Download-Extension)。
+   - 在使用新项目前，强烈建议你先了解 该项目。因为新项目，我没有介绍如何去使用。
+   - 感谢大家的支持。
